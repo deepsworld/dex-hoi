@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guiding Dexterous Policy Learning with Reusable Hand-Object Interaction Templates</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #202434;
+      --muted: #60677a;
+      --line: #e5e8f0;
+      --accent: #4457ff;
+      --accent-soft: #eef0ff;
+      --shadow: 0 14px 40px rgba(31, 37, 63, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(68, 87, 255, 0.12), transparent 30rem),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 34%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 72px 0 44px;
+      text-align: center;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 auto;
+      max-width: 940px;
+      font-size: clamp(2.1rem, 5vw, 4.4rem);
+      line-height: 1.06;
+      letter-spacing: -0.055em;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .anonymous-note {
+      width: min(760px, 100%);
+      margin: 28px auto 0;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 8px 22px rgba(31, 37, 63, 0.06);
+      font-weight: 650;
+      color: var(--text);
+    }
+
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    main {
+      padding: 8px 0 80px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 780px;
+      margin: 0 0 22px;
+    }
+
+    .hero-media {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .media-placeholder,
+    video,
+    iframe,
+    img {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #eef1f7;
+      display: block;
+    }
+
+    .media-placeholder {
+      min-height: 280px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .media-placeholder strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .stats {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.6rem;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .result-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .result-card .content {
+      padding: 16px;
+    }
+
+    .result-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .result-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #2736cc;
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .video-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14px;
+      background: var(--card);
+    }
+
+    .video-card h3 {
+      margin: 12px 2px 4px;
+      font-size: 1.03rem;
+      letter-spacing: -0.02em;
+    }
+
+    .video-card p {
+      margin: 0 2px 4px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .method-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      counter-reset: steps;
+      margin-top: 20px;
+    }
+
+    .step {
+      position: relative;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--card);
+    }
+
+    .step::before {
+      counter-increment: steps;
+      content: counter(steps);
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .instructions {
+      background: #101423;
+      color: #eef1ff;
+      border: 0;
+    }
+
+    .instructions h2,
+    .instructions strong {
+      color: #ffffff;
+    }
+
+    .instructions p,
+    .instructions li {
+      color: #c8cce0;
+    }
+
+    code {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      font-size: 0.9em;
+    }
+
+    footer {
+      padding: 34px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      header {
+        padding-top: 48px;
+      }
+
+      .hero-media,
+      .grid,
+      .video-grid,
+      .method-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="venue">Anonymous Supplementary Website · CoRL Submission</div>
+      <h1>Guiding Dexterous Policy Learning with Reusable Hand-Object Interaction Templates</h1>
+      <p class="subtitle">
+        Supplementary qualitative results and real-world robot videos for an anonymous conference submission.
+      </p>
+      <p class="anonymous-note">
+        This page intentionally omits author names, affiliations, lab identifiers, funding acknowledgments, repository links,
+        and any metadata that could compromise anonymity during review.
+      </p>
+      <nav class="buttons" aria-label="Page sections">
+        <a class="button primary" href="#videos">Robot Videos</a>
+        <a class="button" href="#qualitative">Qualitative Results</a>
+        <a class="button" href="#method">Method Overview</a>
+        <a class="button" href="#editing">Editing Guide</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card" id="overview">
+        <h2>Overview</h2>
+        <p class="section-intro">
+          We study dexterous policy learning with reusable hand-object interaction templates. This page is designed as a
+          lightweight supplement where qualitative examples, rollout videos, and real-world robot evaluations can be added
+          without changing the structure of the site.
+        </p>
+        <div class="hero-media">
+          <div class="media-placeholder">
+            <div>
+              <strong>Hero video or teaser figure</strong>
+              Replace this block with a teaser image, GIF, or video showing representative template-guided manipulation.
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>Reusable</strong>
+              <span>Hand-object interaction templates for policy learning.</span>
+            </div>
+            <div class="stat">
+              <strong>Dexterous</strong>
+              <span>Fine-grained manipulation behaviors across objects and tasks.</span>
+            </div>
+            <div class="stat">
+              <strong>Real-world</strong>
+              <span>Physical robot videos can be embedded below.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="videos">
+        <h2>Real-World Robot Videos</h2>
+        <p class="section-intro">
+          Add robot videos here as local <code>.mp4</code> files or replace the placeholder with embedded videos. Keep file names
+          anonymous, for example <code>assets/videos/real_world_task_01.mp4</code>.
+        </p>
+        <div class="video-grid">
+          <article class="video-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Video 1 Placeholder</strong>
+                Replace with: <code>&lt;video controls src="assets/videos/real_world_task_01.mp4"&gt;&lt;/video&gt;</code>
+              </div>
+            </div>
+            <h3>Real-world task 01</h3>
+            <p>Briefly describe the object, initial condition, and success behavior.</p>
+          </article>
+
+          <article class="video-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Video 2 Placeholder</strong>
+                Replace with: <code>&lt;video controls src="assets/videos/real_world_task_02.mp4"&gt;&lt;/video&gt;</code>
+              </div>
+            </div>
+            <h3>Real-world task 02</h3>
+            <p>Briefly describe the transfer setting, object variation, or recovery behavior.</p>
+          </article>
+
+          <article class="video-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Video 3 Placeholder</strong>
+                Replace with: <code>&lt;video controls src="assets/videos/real_world_task_03.mp4"&gt;&lt;/video&gt;</code>
+              </div>
+            </div>
+            <h3>Real-world task 03</h3>
+            <p>Briefly describe the dexterous manipulation skill demonstrated in this rollout.</p>
+          </article>
+
+          <article class="video-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Video 4 Placeholder</strong>
+                Replace with: <code>&lt;video controls src="assets/videos/real_world_task_04.mp4"&gt;&lt;/video&gt;</code>
+              </div>
+            </div>
+            <h3>Real-world task 04</h3>
+            <p>Briefly describe another task, object category, or qualitative comparison.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="qualitative">
+        <h2>Qualitative Results</h2>
+        <p class="section-intro">
+          Use these cards for qualitative rollouts, state sequences, contact visualizations, template examples, or comparisons
+          against baselines. Duplicate a card to add more examples.
+        </p>
+        <div class="grid">
+          <article class="result-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Image / GIF</strong>
+                <span>assets/images/qualitative_01.png</span>
+              </div>
+            </div>
+            <div class="content">
+              <h3>Template-guided rollout</h3>
+              <p>Describe what the template captures and how the policy uses it during manipulation.</p>
+              <div class="tag-row">
+                <span class="tag">Template</span>
+                <span class="tag">Rollout</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="result-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Image / GIF</strong>
+                <span>assets/images/qualitative_02.png</span>
+              </div>
+            </div>
+            <div class="content">
+              <h3>Object variation</h3>
+              <p>Show how the learned behavior adapts to shape, pose, or appearance changes.</p>
+              <div class="tag-row">
+                <span class="tag">Generalization</span>
+                <span class="tag">Objects</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="result-card">
+            <div class="media-placeholder">
+              <div>
+                <strong>Image / GIF</strong>
+                <span>assets/images/qualitative_03.png</span>
+              </div>
+            </div>
+            <div class="content">
+              <h3>Failure or recovery case</h3>
+              <p>Optionally include an instructive failure, recovery behavior, or edge case.</p>
+              <div class="tag-row">
+                <span class="tag">Analysis</span>
+                <span class="tag">Recovery</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="card" id="method">
+        <h2>Method Overview</h2>
+        <p class="section-intro">
+          A concise, anonymous overview for readers browsing the supplement. Edit the descriptions below to match the final
+          wording in the paper.
+        </p>
+        <div class="method-list">
+          <div class="step">
+            <h3>Extract templates</h3>
+            <p>Represent reusable hand-object interaction structure from demonstrations or generated behaviors.</p>
+          </div>
+          <div class="step">
+            <h3>Condition policy learning</h3>
+            <p>Guide dexterous policies with template information during training and/or deployment.</p>
+          </div>
+          <div class="step">
+            <h3>Transfer across settings</h3>
+            <p>Reuse interaction structure across object instances, task variants, or manipulation contexts.</p>
+          </div>
+          <div class="step">
+            <h3>Evaluate on robots</h3>
+            <p>Validate qualitative behavior through simulated and real-world robot rollouts.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card instructions" id="editing">
+        <h2>Editing Guide</h2>
+        <p>
+          To add new results, copy an existing <code>&lt;article class="video-card"&gt;</code> or
+          <code>&lt;article class="result-card"&gt;</code> block and update the title, description, tags, and media path.
+        </p>
+        <ul>
+          <li><strong>Local video:</strong> replace a placeholder with <code>&lt;video controls src="assets/videos/name.mp4"&gt;&lt;/video&gt;</code>.</li>
+          <li><strong>Local image:</strong> replace a placeholder with <code>&lt;img src="assets/images/name.png" alt="Anonymous qualitative result" /&gt;</code>.</li>
+          <li><strong>Embedded video:</strong> use an anonymous hosting link and avoid account, channel, or organization identifiers.</li>
+          <li><strong>Anonymity check:</strong> remove author names, affiliations, metadata, repository URLs, and visible lab logos from media.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      Anonymous supplementary material for conference review.
+    </footer>
+  </div>
+</body>
+</html>
