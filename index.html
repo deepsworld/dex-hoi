@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Anonymous supplementary video gallery." />
-  <title>DexTemplates Supplementary Videos</title>
+  <title>DexTemplates: Reusable Hand-Object Interaction Templates for Dexterous Manipulation</title>
   <style>
     :root {
       --bg: #f7f8fb;
@@ -112,6 +111,16 @@
       background: #101827;
     }
 
+    .portrait-card {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .portrait-video {
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+    }
+
     .video-meta { padding: 14px 15px 16px; }
     .video-title {
       margin: 0;
@@ -137,6 +146,58 @@
     }
     .pill.success { background: #ecfaf5; color: var(--success); }
     .pill.failure { background: #fff3ed; color: var(--failure); }
+
+    .carousel-shell {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .carousel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .carousel-count {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .carousel-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    .carousel-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--ink);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(20, 30, 55, 0.08);
+    }
+
+    .carousel-button:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .carousel-track {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
 
     .layout-card {
       background: var(--card);
@@ -166,9 +227,12 @@
 
     @media (max-width: 960px) {
       .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .carousel-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 640px) {
       .video-grid { grid-template-columns: 1fr; }
+      .carousel-track { grid-template-columns: 1fr; }
+      .carousel-top { align-items: flex-start; }
       nav { justify-content: flex-start; gap: 14px; }
       header { padding-top: 42px; }
     }
@@ -177,66 +241,106 @@
 <body>
   <div class="topbar">
     <nav aria-label="Video sections">
-      <a href="#pipeline-videos">Pipeline videos</a>
-      <a href="#success-videos">Success videos</a>
-      <a href="#failure-videos">Failure videos</a>
+      <a href="#overview-video">Overview</a>
+      <a href="#pipeline-videos">Pipeline</a>
+      <a href="#lift-videos">Lift tasks</a>
+      <a href="#point-cloud-videos">Point-cloud policies</a>
+      <a href="#success-videos">Success</a>
+      <a href="#failure-videos">Failure</a>
+      <a href="#real-world-evaluation">Real-world evaluation</a>
     </nav>
   </div>
 
   <header class="container">
     <h1>DexTemplates: Reusable Hand-Object Interaction Templates for Dexterous Manipulation</h1>
-    <p class="subtitle">Supplementary videos</p>
   </header>
 
   <main>
+    <section id="overview-video" class="container">
+      <div class="section-head">
+        <h2>Overview</h2>
+      </div>
+      <article class="video-card">
+        <video controls muted playsinline preload="metadata" src="overview.mp4"></video>
+      </article>
+    </section>
+
     <section id="pipeline-videos" class="container">
       <div class="section-head">
-        <h2>Pipeline videos</h2>
-        <p class="section-note">Step-by-step presentation videos showing the pipeline for each task.</p>
+        <h2>Pipeline</h2>
+        <p class="section-note">Step-by-step presentations for each task.</p>
       </div>
       <div class="video-grid">
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_dispenser_lift_press_twice.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Dispenser lift and press twice</h3><p class="video-caption">Pipeline walkthrough for lifting the dispenser and pressing it twice.</p></div>
+          <div class="video-meta"><h3 class="video-title">Dispenser lift and press twice</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_invert_cup.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Invert cup</h3><p class="video-caption">Pipeline walkthrough for inverting a cup.</p></div>
+          <div class="video-meta"><h3 class="video-title">Invert cup</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_lift_tilt_bottle.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Lift and tilt bottle</h3><p class="video-caption">Pipeline walkthrough for lifting and tilting a bottle.</p></div>
+          <div class="video-meta"><h3 class="video-title">Lift and tilt bottle</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_lift_tilt_cup.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Lift and tilt cup</h3><p class="video-caption">Pipeline walkthrough for lifting and tilting a cup.</p></div>
+          <div class="video-meta"><h3 class="video-title">Lift and tilt cup</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_mug_grasp_change_sequence.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Mug grasp-change sequence</h3><p class="video-caption">Pipeline walkthrough for changing the grasp on a mug.</p></div>
+          <div class="video-meta"><h3 class="video-title">Mug grasp-change sequence</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_open_drawer.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Open drawer</h3><p class="video-caption">Pipeline walkthrough for opening a drawer.</p></div>
+          <div class="video-meta"><h3 class="video-title">Open drawer</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_stack_rgb_blocks_different_sizes.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Stack RGB blocks of different sizes</h3><p class="video-caption">Pipeline walkthrough for sequential block stacking.</p></div>
+          <div class="video-meta"><h3 class="video-title">Stack RGB blocks of different sizes</h3></div>
         </article>
         <article class="video-card">
           <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_03_trigger_sprayer_manipulate.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Trigger sprayer manipulate</h3><p class="video-caption">Pipeline walkthrough for manipulating a trigger sprayer.</p></div>
+          <div class="video-meta"><h3 class="video-title">Trigger sprayer manipulate</h3></div>
         </article>
-        <article class="video-card">
-          <video controls muted playsinline preload="metadata" src="supp_presentation_merged_videos/v2_10_lift_jug_handle.mp4"></video>
-          <div class="video-meta"><span class="pill">Pipeline</span><h3 class="video-title">Lift jug handle</h3><p class="video-caption">Pipeline walkthrough for lifting by a jug handle.</p></div>
-        </article>
+      </div>
+    </section>
+
+    <section id="lift-videos" class="container">
+      <div class="section-head">
+        <h2>Lift tasks</h2>
+        <p class="section-note">RL rollout videos for the lift task set, for diverse object geometries.</p>
+      </div>
+      <div class="carousel-shell">
+        <div class="carousel-top">
+          <div id="lift-carousel-count" class="carousel-count"></div>
+          <div class="carousel-controls">
+            <button class="carousel-button" type="button" id="lift-carousel-prev" aria-label="Previous lift task">&lsaquo;</button>
+            <button class="carousel-button" type="button" id="lift-carousel-next" aria-label="Next lift task">&rsaquo;</button>
+          </div>
+        </div>
+        <div id="lift-carousel-track" class="carousel-track" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="point-cloud-videos" class="container">
+      <div class="section-head">
+        <h2>Point-cloud policies</h2>
+        <p class="section-note">RL rollout videos for point-cloud trained policies.</p>
+      </div>
+      <div class="video-grid">
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_lift_ycb_mug_top__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Lift YCB mug top</h3></div></article>
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_lift_ycb_mustard_bottle__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Lift YCB mustard bottle</h3></div></article>
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_lift_ycb_pitcher__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Lift YCB pitcher</h3></div></article>
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_lift_ycb_rubiks_cube__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Lift YCB Rubik's cube</h3></div></article>
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_stack_lego_blocks__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Stack LEGO blocks</h3></div></article>
+        <article class="video-card"><video controls muted playsinline preload="metadata" src="v2_11_point_cloud_videos/v2_11_stack_ycb_cups__04_rl_rollout.mp4"></video><div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Stack YCB cups</h3></div></article>
       </div>
     </section>
 
     <section id="success-videos" class="container">
       <div class="section-head">
-        <h2>Success videos</h2>
+        <h2>Success</h2>
         <p class="section-note">Residual-policy outputs that successfully complete the target behavior.</p>
       </div>
       <div class="video-grid">
@@ -257,7 +361,7 @@
 
     <section id="failure-videos" class="container">
       <div class="section-head">
-        <h2>Failure videos</h2>
+        <h2>Failure</h2>
         <p class="section-note">Failure rollouts included for reviewer inspection.</p>
       </div>
       <div class="video-grid">
@@ -269,10 +373,113 @@
       </div>
     </section>
 
+    <section id="real-world-evaluation" class="container">
+      <div class="section-head">
+        <h2>Real-world evaluation</h2>
+        <p class="section-note">Sequential real-world execution for the YCB mustard bottle, YCB mug, block, and cup tasks.</p>
+      </div>
+      <article class="video-card portrait-card">
+        <video class="portrait-video" controls muted playsinline preload="metadata" src="real_execution.mp4"></video>
+        <div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">Real-world execution</h3><p class="video-caption">Four real-world tasks shown sequentially.</p></div>
+      </article>
+    </section>
+
   </main>
 
   <footer class="container">
-    Supplementary videos
+    DexTemplates
   </footer>
+
+  <script>
+    const liftVideos = [
+      "v2_10_lift_videos/v2_10_lift_apple__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s01_t01__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s01_t02__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s01_t05__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s01_t08__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s01_t09__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s02_t01__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s02_t02__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s02_t05__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s02_t08__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bottle_s02_t09__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bowl_s01_t01__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bowl_s01_t03__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bowl_s01_t07__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bowl_s01_t10__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_bowl_s01_t11__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_donut__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_jug_handle__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_mug_top__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_screwdriver_side__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_toothbrush_flat__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s02_t01__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s02_t05__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s02_t06__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s02_t14__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s02_t15__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s03_t01__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s03_t05__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s03_t06__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s03_t14__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_trigger_sprayer_s03_t15__04_rl_rollout.mp4",
+      "v2_10_lift_videos/v2_10_lift_wineglass_stem__04_rl_rollout.mp4"
+    ];
+
+    const carouselTrack = document.getElementById("lift-carousel-track");
+    const carouselCount = document.getElementById("lift-carousel-count");
+    const prevButton = document.getElementById("lift-carousel-prev");
+    const nextButton = document.getElementById("lift-carousel-next");
+    let liftCarouselIndex = 0;
+
+    function visibleLiftCards() {
+      if (window.matchMedia("(max-width: 640px)").matches) return 1;
+      if (window.matchMedia("(max-width: 960px)").matches) return 2;
+      return 3;
+    }
+
+    function titleFromPath(path) {
+      const slug = path.split("/").pop()
+        .replace("v2_10_", "")
+        .replace("__04_rl_rollout.mp4", "");
+      return slug
+        .split("_")
+        .map((part) => part.match(/^s\d+$|^t\d+$/) ? part.toUpperCase() : part)
+        .join(" ")
+        .replace(/\b\w/g, (letter) => letter.toUpperCase());
+    }
+
+    function renderLiftCarousel() {
+      const visible = visibleLiftCards();
+      const cards = [];
+      for (let offset = 0; offset < visible; offset += 1) {
+        cards.push(liftVideos[(liftCarouselIndex + offset) % liftVideos.length]);
+      }
+
+      carouselTrack.innerHTML = cards.map((path) => {
+        const title = titleFromPath(path);
+        return `
+          <article class="video-card">
+            <video controls muted playsinline preload="metadata" src="${path}"></video>
+            <div class="video-meta"><span class="pill success">Success</span><h3 class="video-title">${title}</h3></div>
+          </article>
+        `;
+      }).join("");
+      carouselCount.textContent = `Task ${liftCarouselIndex + 1} of ${liftVideos.length}`;
+    }
+
+    prevButton.addEventListener("click", () => {
+      liftCarouselIndex = (liftCarouselIndex - 1 + liftVideos.length) % liftVideos.length;
+      renderLiftCarousel();
+    });
+
+    nextButton.addEventListener("click", () => {
+      liftCarouselIndex = (liftCarouselIndex + 1) % liftVideos.length;
+      renderLiftCarousel();
+    });
+
+    window.addEventListener("resize", renderLiftCarousel);
+    renderLiftCarousel();
+  </script>
 </body>
 </html>
