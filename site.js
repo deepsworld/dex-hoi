@@ -133,12 +133,12 @@ function renderTaskSpanCards() {
 
 function renderExamples() {
   const examples = [
-    { title: "Invert cup", note: "Reorient a cup by changing the hand–object interaction during execution.", src: "assets/examples/invert_cup.mp4" },
-    { title: "Erase the board", note: "Maintain contact while moving the eraser across the board.", src: "assets/examples/erase_board.mp4" },
+    { title: "Invert cup", note: "Reorient the cup with wrist movement", src: "assets/examples/invert_cup.mp4" },
+    { title: "Erase the board", note: "Moving the eraser across the board.", src: "assets/examples/erase_board.mp4" },
     { title: "Operate dispenser", note: "Lift the dispenser and press its pump twice.", src: "assets/examples/dispenser.mp4" },
-    { title: "Open drawer", note: "Articulated-object manipulation with sustained handle interaction.", src: "assets/examples/open_drawer.mp4" },
-    { title: "Stack YCB cups", note: "Sequential placement using two cup instances.", src: "assets/examples/stack_ycb_cups.mp4" },
-    { title: "Mount cylinder · 7 mm", note: "Precision mounting with 7 mm radial clearance.", src: "assets/examples/mounting_7mm.mp4" },
+    { title: "Open drawer", note: "", src: "assets/examples/open_drawer.mp4" },
+    { title: "Stack YCB cups", note: "Place a cup inside another cup.", src: "assets/examples/stack_ycb_cups.mp4" },
+    { title: "Mount cylinder · 7 mm", note: "Mounting with 7 mm radial clearance.", src: "assets/examples/mounting_7mm.mp4" },
   ];
   document.querySelector("#example-grid").innerHTML = examples.map((task) => `
     <article class="example-card"><video muted loop playsinline controls preload="metadata" data-autoplay src="${task.src}"></video><h3>${task.title}</h3><p>${task.note}</p></article>
