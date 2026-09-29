@@ -30,7 +30,7 @@ a { color: inherit; }
 .method-icon { width: 100%; aspect-ratio: 1; object-fit: contain; }
 .hero h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(38px, 5vw, 68px); font-weight: 500; line-height: 1.08; letter-spacing: -0.04em; }
 .hero h1 .title-name { color: var(--cobalt); }
-.hero h1 .title-description { font-size: 0.8em; letter-spacing: -0.025em; }
+.hero h1 .title-description { color: var(--ink); font-size: 0.6em; letter-spacing: -0.015em; }
 .hero > p { max-width: 900px; margin: 25px auto 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .button { padding: 11px 17px; border: 1px solid var(--ink); border-radius: 4px; font-size: 14px; font-weight: 700; text-decoration: none; }
