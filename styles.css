@@ -62,7 +62,7 @@ a { color: inherit; }
 
 .intro { padding: 110px 0; }
 .intro-grid { display: grid; grid-template-columns: 1fr 0.72fr; gap: 70px; align-items: start; }
-h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(29px, 3.2vw, 43px); font-weight: 500; line-height: 1.12; letter-spacing: -0.03em; }
+h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: clamp(29px, 3.2vw, 43px); font-weight: 500; line-height: 1.12; letter-spacing: -0.015em; }
 .intro-copy { color: var(--muted); font-size: 18px; }
 .intro-copy p:first-child { margin-top: 4px; }
 .pipeline-strip { display: grid; grid-template-columns: repeat(4, 1fr); margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
@@ -87,7 +87,7 @@ h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(29px, 3.2vw, 43px)
 .gallery-section.tinted { background: var(--paper-deep); }
 .subsection-heading { margin: 58px 0 24px; padding-top: 24px; border-top: 1px solid var(--line); }
 .subsection-heading.transfer-heading { margin-top: 90px; }
-.subsection-heading h3 { margin: 0; font-family: Georgia, serif; font-size: 27px; font-weight: 500; }
+.subsection-heading h3 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: 27px; font-weight: 500; letter-spacing: -0.01em; }
 .subsection-heading p { max-width: 780px; margin: 9px 0 0; color: var(--muted); }
 .task-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .full-width-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
