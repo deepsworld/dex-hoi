@@ -65,7 +65,7 @@ h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(29px, 3.2vw, 43px)
 .pipeline-strip span { font-weight: 750; }
 
 .method-section { padding: 0 0 86px; color: var(--ink); border-bottom: 1px solid var(--line); background: white; }
-.method-section .section-shell { max-width: 900px; }
+.method-section .section-shell { width: min(900px, calc(100% - 48px)); max-width: none; }
 .section-heading { margin-bottom: 38px; }
 .section-heading > p { max-width: 760px; margin: 12px 0 0; color: var(--muted); font-size: 16px; }
 .section-heading.light .section-kicker { color: var(--cobalt); }
@@ -153,6 +153,7 @@ h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(29px, 3.2vw, 43px)
 }
 @media (max-width: 760px) {
   .section-shell, .hero { width: min(100% - 28px, var(--max)); }
+  .method-section .section-shell { width: calc(100% - 28px); }
   .hero { min-height: auto; padding: 58px 0; }
   .hero-title { grid-template-columns: 86px minmax(0, 1fr); gap: 14px; }
   .hero h1 { font-size: clamp(20px, 6vw, 28px); }
