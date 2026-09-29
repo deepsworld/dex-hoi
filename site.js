@@ -66,7 +66,7 @@ const controlTasks = [
     title: "Hand–object interaction",
     note: "The assigned bottle template specifies a side or top interaction.",
     template: "assets/templates/scale_sources/bottle_side_source.png",
-    referenceImage: "assets/templates/control/bottle_top.png",
+    references: [["Side", "assets/references/control/bottle_side.mp4"], ["Top", "assets/references/control/bottle_top.mp4"]],
     clips: [["Side", "assets/rollouts/scale/bottle_side_100.mp4"], ["Top", "assets/rollouts/scale/bottle_top_125.mp4"]],
   },
 ];
@@ -112,8 +112,8 @@ function renderControlCards() {
   document.querySelector("#control-grid").innerHTML = controlTasks.map((task) => `
     <article class="control-card">
       <div class="control-card-copy"><span class="tag">Control axis</span><h3>${task.title}</h3><p>${task.note}</p><img src="${task.template}" alt="Interaction template for ${task.title}"></div>
-      <div class="reference-panel"><span class="media-label">${task.referenceImage ? "Retargeted interaction" : "Constructed references"}</span>${task.referenceImage ? `<img src="${task.referenceImage}" alt="Retargeted interaction for ${task.title}">` : `<div class="reference-grid" data-count="${task.references.length}">${task.references.map(([label, src]) => video(src, label)).join("")}</div>`}</div>
-      <div class="outcomes" data-count="${task.clips.length}">${task.clips.map(([label, src]) => `<div class="outcome">${video(src, label)}</div>`).join("")}</div>
+      <div class="reference-panel"><span class="media-label">Constructed references</span><div class="reference-grid" data-count="${task.references.length}">${task.references.map(([label, src]) => video(src, label)).join("")}</div></div>
+      <div class="outcomes-panel"><span class="media-label">Grounded policy</span><div class="outcomes" data-count="${task.clips.length}">${task.clips.map(([label, src]) => `<div class="outcome">${video(src, label)}</div>`).join("")}</div></div>
     </article>
   `).join("");
 }

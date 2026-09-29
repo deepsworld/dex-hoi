@@ -398,6 +398,18 @@ CLEAN_REFERENCE_ASSETS = (
     ),
     CleanReferenceAsset(
         WORKSPACE
+        / "logs/v3_03_reusability_pipeline/v3_03_reuse_bottle_side_scale_100/exports/reach_grasp_lift.npz",
+        "assets/references/control/bottle_side.mp4",
+        "v3_03_reuse_bottle_side_scale_100",
+    ),
+    CleanReferenceAsset(
+        WORKSPACE
+        / "logs/v3_03_reusability_pipeline/v3_03_reuse_bottle_top_scale_100/exports/reach_grasp_lift.npz",
+        "assets/references/control/bottle_top.mp4",
+        "v3_03_reuse_bottle_top_scale_100",
+    ),
+    CleanReferenceAsset(
+        WORKSPACE
         / "logs/v3_07_controllability_hammer2_pipeline/v3_controllability_hammer2_slow/exports/hammer2_pick_and_strike_slow_oakink_sequence_refined_hold5.npy",
         "assets/references/control/hammer_slow.mp4",
         "v3_controllability_hammer2_slow",

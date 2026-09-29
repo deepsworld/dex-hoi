@@ -119,12 +119,11 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
 .control-card-copy { padding: 24px; }
 .control-card-copy .tag { display: inline-block; margin-bottom: 15px; }
 .control-card-copy img { max-height: 145px; margin: 16px auto 0; object-fit: contain; }
-.control-card .reference-panel, .control-card .outcomes { position: relative; border-left: 1px solid var(--line); background: #e8ebeb; }
-.control-card .reference-panel .media-label { position: absolute; left: 10px; top: 10px; z-index: 2; padding: 5px 8px; border-radius: 2px; color: white; background: rgba(17,24,39,.86); }
+.control-card .reference-panel, .control-card .outcomes-panel { position: relative; border-left: 1px solid var(--line); background: #e8ebeb; }
+.control-card .reference-panel .media-label, .control-card .outcomes-panel .media-label { position: absolute; left: 10px; top: 10px; z-index: 2; padding: 5px 8px; border-radius: 2px; color: white; background: rgba(17,24,39,.86); }
 .control-card .reference-panel video, .control-card .outcomes video { width: 100%; height: 100%; object-fit: contain; background: white; }
-.control-card .reference-panel > img { width: 100%; height: 100%; padding: 16px; object-fit: contain; }
 .control-card .reference-grid, .control-card .outcomes { display: grid; height: 100%; }
-.control-card .reference-grid { padding-top: 36px; background: white; }
+.control-card .reference-grid, .control-card .outcomes { padding-top: 36px; background: white; }
 .control-card .reference-grid[data-count="2"],
 .control-card .outcomes[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
 .control-card .reference-grid[data-count="3"],
@@ -155,7 +154,7 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
   .hero-visual { min-height: 420px; }
   .control-card { grid-template-columns: 1fr; }
   .control-card .reference-panel,
-  .control-card .outcomes { min-height: 280px; border-left: 0; border-top: 1px solid var(--line); }
+  .control-card .outcomes-panel { min-height: 280px; border-left: 0; border-top: 1px solid var(--line); }
   .example-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 760px) {
@@ -177,7 +176,7 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
   .media-triptych, .transfer-card .media-triptych { grid-template-columns: 1fr 1fr; }
   .media-panel:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
   .control-card { grid-template-columns: 1fr; }
-  .control-card .outcomes { min-height: 260px; border-left: 0; border-top: 1px solid var(--line); }
+  .control-card .outcomes-panel { min-height: 260px; border-left: 0; border-top: 1px solid var(--line); }
   .example-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
