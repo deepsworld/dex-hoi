@@ -33,18 +33,17 @@
     <section class="gallery-section section-shell" id="reuse" aria-labelledby="reuse-title">
       <div class="section-heading">
         <h2 id="reuse-title">Interaction-template reuse across geometry</h2>
-        <p>Reuse is evaluated at the representation level. Every target task receives a separately trained policy.</p>
       </div>
 
       <div class="subsection-heading">
-        <h3>Scale reuse</h3>
+        <h3>Transfer across size variations</h3>
         <p>Five source interactions are evaluated on target objects at 0.70×, 0.85×, 1.00×, and 1.25× scale. Representative rollouts are shown here.</p>
       </div>
       <div class="task-grid" id="scale-grid"></div>
 
       <div class="subsection-heading transfer-heading">
-        <h3>Template transfer</h3>
-        <p>Transferred and target-specific templates are compared on the same target object and lift task.</p>
+        <h3>Transfer across Instance variations</h3>
+        <p>Transferred and target-specific templates are compared on the same target object for the lift task.</p>
       </div>
       <div class="task-grid transfer-grid" id="transfer-grid"></div>
     </section>
@@ -52,8 +51,7 @@
     <section class="gallery-section tinted" id="control" aria-labelledby="control-title">
       <div class="section-shell">
         <div class="section-heading">
-          <h2 id="control-title">Task-specification interventions</h2>
-          <p>Each variant is trained independently; the controlled factor is encoded in the task specification.</p>
+          <h2 id="control-title">Task-specification Control</h2>
         </div>
         <div class="control-grid" id="control-grid"></div>
       </div>

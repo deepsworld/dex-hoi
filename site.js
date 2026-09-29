@@ -1,35 +1,30 @@
 const scaleTasks = [
   {
     title: "Bottle · side grasp",
-    note: "Bottle-side interaction evaluated at multiple target scales.",
     source: "assets/templates/scale_sources/bottle_side_source.png",
     anchor: "assets/templates/scale_targets/bottle_side.png",
     clips: [["0.70×", "assets/rollouts/scale/bottle_side_070.mp4"], ["1.00×", "assets/rollouts/scale/bottle_side_100.mp4"]],
   },
   {
     title: "Bottle · top grasp",
-    note: "Bottle-top interaction evaluated at multiple target scales.",
     source: "assets/templates/scale_sources/bottle_top_source.png",
     anchor: "assets/templates/scale_targets/bottle_top.png",
     clips: [["0.70×", "assets/rollouts/scale/bottle_top_070.mp4"], ["1.25×", "assets/rollouts/scale/bottle_top_125.mp4"]],
   },
   {
     title: "Mug · handle grasp",
-    note: "Mug-handle interaction evaluated at three representative scales.",
     source: "assets/templates/scale_sources/mug_handle_source.png",
     anchor: "assets/templates/scale_targets/mug_handle.png",
     clips: [["0.70×", "assets/rollouts/scale/mug_handle_070.mp4"], ["1.00×", "assets/rollouts/scale/mug_handle_100.mp4"], ["1.25×", "assets/rollouts/scale/mug_handle_125.mp4"]],
   },
   {
     title: "Mug · side grasp",
-    note: "Mug-side interaction evaluated at small and large target scales.",
     source: "assets/templates/scale_sources/mug_side_source.png",
     anchor: "assets/templates/scale_targets/mug_side.png",
     clips: [["0.70×", "assets/rollouts/scale/mug_side_070.mp4"], ["1.25×", "assets/rollouts/scale/mug_side_125.mp4"]],
   },
   {
     title: "Mug · top grasp",
-    note: "Mug-top interaction evaluated at the two extreme target scales.",
     source: "assets/templates/scale_sources/mug_top_source.png",
     anchor: "assets/templates/scale_targets/mug_top.png",
     clips: [["0.70×", "assets/rollouts/scale/mug_top_070.mp4"], ["1.25×", "assets/rollouts/scale/mug_top_125.mp4"]],
@@ -90,7 +85,7 @@ function video(src, label, className = "") {
 function renderScaleCards() {
   document.querySelector("#scale-grid").innerHTML = scaleTasks.map((task) => `
     <article class="task-card">
-      <div class="task-card-head"><div><h3>${task.title}</h3><p>${task.note}</p></div><span class="tag">Scale</span></div>
+      <div class="task-card-head"><h3>${task.title}</h3><span class="tag">Scale</span></div>
       <div class="media-triptych">
         <div class="media-panel"><span>Source template</span><img src="${task.source}" alt="Source interaction for ${task.title}"></div>
         <div class="media-panel"><span>Retargeted anchor</span><img src="${task.anchor}" alt="Retargeted robot interaction for ${task.title}"></div>
@@ -103,7 +98,7 @@ function renderScaleCards() {
 function renderTransferCards() {
   document.querySelector("#transfer-grid").innerHTML = transferTasks.map((task) => `
     <article class="task-card transfer-card">
-      <div class="task-card-head"><div><h3>${task.title}</h3><p>Transferred interaction compared with a target-specific interaction.</p></div><span class="tag">${task.type}</span></div>
+      <div class="task-card-head"><h3>${task.title}</h3><span class="tag">${task.type}</span></div>
       <div class="media-triptych">
         <div class="media-panel"><span>Source interactions</span><div class="template-stack"><img src="assets/templates/transfer_sources/${task.source}_retargeted.png" alt="Transferred source interaction for ${task.title}"><img src="assets/templates/transfer_sources/${task.source}_exact.png" alt="Target-specific source interaction for ${task.title}"></div></div>
         <div class="media-panel"><span>Retargeted anchors</span><div class="template-stack"><img src="assets/templates/transfer_targets/${task.source}_retargeted.png" alt="Retargeted transferred interaction for ${task.title}"><img src="assets/templates/transfer_targets/${task.source}_exact.png" alt="Retargeted target-specific interaction for ${task.title}"></div></div>
