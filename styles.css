@@ -136,7 +136,6 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
 .control-card .clip, .control-card .clip video { height: 100%; }
 
 .full-width-grid .task-card .media-panel img, .full-width-grid .task-card .media-panel video, .full-width-grid .clip-grid, .full-width-grid .clip video { height: 230px; }
-.scope-note { display: grid; grid-template-columns: 150px 1fr; gap: 18px; margin: 42px 0 84px; padding: 21px 24px; border-left: 5px solid var(--cobalt); color: #39404b; background: var(--blue-soft); }
 .example-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .example-card { border: 1px solid var(--line); background: white; }
 .example-card video { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #f8fafc; }
@@ -179,7 +178,6 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
   .media-panel:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); }
   .control-card { grid-template-columns: 1fr; }
   .control-card .outcomes { min-height: 260px; border-left: 0; border-top: 1px solid var(--line); }
-  .scope-note { grid-template-columns: 1fr; }
   .example-grid { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
