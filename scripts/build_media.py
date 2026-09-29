@@ -222,9 +222,9 @@ POLICY_ASSETS = (
         30256,
     ),
     PolicyAsset(
-        "revision/videos/experiment_policy_rollouts_20260924/method_ablation/v2_03_mug_grasp_change_sequence/full_method/ours/seed42/checkpoint_best/rollout_fixed.mp4",
+        "revision/videos/experiment_policy_rollouts_20260924/method_ablation/v2_03_mug_grasp_change_sequence/full_method/ours/seed52/checkpoint_best/rollout_fixed.mp4",
         "assets/rollouts/tasks/mug_grasp_change.mp4",
-        38712,
+        37416,
     ),
     # Additional qualitative task example with an audited positive checkpoint.
     PolicyAsset(
