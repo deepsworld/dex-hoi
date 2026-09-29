@@ -24,7 +24,7 @@ BANNED_PATTERNS = (
     r"\b(?:authors?|affiliations?|acknowledgements?)\s*:",
 )
 MEDIA_PATTERN = re.compile(
-    r"(?P<path>(?:\.\./)?assets/[A-Za-z0-9_./-]+\.(?:png|gif|mp4)|real_execution\.mp4|paper\.pdf)"
+    r"(?P<path>(?:\.\./)?assets/[A-Za-z0-9_./-]+\.(?:png|gif|mp4|ttf)|real_execution\.mp4|paper\.pdf)"
 )
 
 
