@@ -81,7 +81,6 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
 .deck-help { margin: 12px 0 0; color: var(--muted); font-size: 13px; text-align: right; }
 .deck-help a { color: var(--cobalt); }
 .deck-embed { aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 4px; background: white; overflow: hidden; }
-.deck-embed iframe { width: 100%; height: 100%; border: 0; }
 
 .gallery-section { padding: 112px 0; }
 .gallery-section.tinted { background: var(--paper-deep); }
