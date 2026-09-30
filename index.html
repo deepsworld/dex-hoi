@@ -7,7 +7,7 @@
   <meta name="color-scheme" content="light">
   <title>DexLink · Dexterous demonstrations from chained hand–object poses</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=control-columns">
+  <link rel="stylesheet" href="styles.css?v=source-media">
   <link rel="stylesheet" href="embedded-deck.css?v=inline-deck">
 </head>
 <body>
@@ -138,6 +138,14 @@
       </div>
     </section>
 
+    <nav class="section-index section-shell" aria-label="Project sections">
+      <a href="#reuse">Geometry Robustness</a>
+      <a href="#control">Task Specifications</a>
+      <a href="#tasks">Task Span</a>
+      <a href="#examples">Additional Examples</a>
+      <a href="#real-world">Real World</a>
+    </nav>
+
     <section class="gallery-section section-shell" id="reuse" aria-labelledby="reuse-title">
       <div class="section-heading">
         <h2 id="reuse-title">Interaction-template reuse across geometry</h2>
@@ -186,7 +194,7 @@
       <div class="section-shell real-grid">
         <div class="real-copy">
           <h2 id="real-title">Real-world evaluation</h2>
-          <p>Point-cloud policies trained in simulation lift a mug and mustard bottle seen during training, and transfer to an unseen cup and block. This is preliminary evidence from a limited four-object evaluation.</p>
+          <p>Point-cloud policies trained in simulation lift a mug and mustard bottle seen during training, and transfer to an unseen cup and block.</p>
         </div>
         <div class="real-video">
           <video muted loop playsinline controls preload="metadata" data-autoplay src="real_execution.mp4"></video>
@@ -196,7 +204,7 @@
     </section>
   </main>
 
-  <script src="site.js?v=control-references"></script>
+  <script src="site.js?v=source-media"></script>
   <script src="embedded-deck.js?v=inline-deck"></script>
 </body>
 </html>

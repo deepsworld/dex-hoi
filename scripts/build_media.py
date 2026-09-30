@@ -279,6 +279,14 @@ STATIC_ASSETS = (
         )
         for path in sorted(directory.glob("*.png"))
     ),
+    StaticAsset(
+        WORKSPACE / "external_data/oakink_demo_renders/mug-C10001-cc7dfee50b.png",
+        "assets/templates/tasks/mug_top_source.png",
+    ),
+    StaticAsset(
+        WORKSPACE / "external_data/oakink_demo_renders/mug-C10001-8f91a5a1be.png",
+        "assets/templates/tasks/mug_side_source.png",
+    ),
     # Reference trajectories and controllability comparisons.
     StaticAsset(
         WORKSPACE

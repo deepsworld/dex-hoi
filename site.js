@@ -65,17 +65,59 @@ const controlTasks = [
   {
     title: "Hand–object interaction",
     note: "The assigned bottle template specifies a side or top interaction.",
-    template: "assets/templates/scale_sources/bottle_side_source.png",
+    templates: [
+      ["Side grasp", "assets/templates/scale_sources/bottle_side_source.png"],
+      ["Top grasp", "assets/templates/scale_sources/bottle_top_source.png"],
+    ],
     references: [["Side", "assets/references/control/bottle_side.mp4"], ["Top", "assets/references/control/bottle_top.mp4"]],
     clips: [["Side", "assets/rollouts/scale/bottle_side_100.mp4"], ["Top", "assets/rollouts/scale/bottle_top_125.mp4"]],
   },
 ];
 
 const taskSpan = [
-  { title: "Open notebook", type: "Articulation", key: "open_notebook", template: "open_notebook.png" },
-  { title: "Stack three blocks", type: "Sequential · multi-object", key: "stack_blocks", template: "stack_blocks.png" },
-  { title: "Banana handover", type: "Bimanual · dynamic", key: "banana_handover", template: "banana_handover.png" },
-  { title: "Mug grasp change", type: "Grasp transition", key: "mug_grasp_change", template: "mug_grasp_change.png" },
+  {
+    title: "Open notebook",
+    type: "Articulation",
+    key: "open_notebook",
+    source: {
+      kind: "video",
+      label: "Source motion · ARCTIC · notebook",
+      path: "assets/sources/arctic_notebook_opening.mp4",
+    },
+  },
+  {
+    title: "Stack three blocks",
+    type: "Sequential · multi-object",
+    key: "stack_blocks",
+    source: {
+      kind: "image",
+      label: "Source template · OakInk",
+      path: "assets/templates/tasks/stack_blocks.png",
+    },
+  },
+  {
+    title: "Banana handover",
+    type: "Bimanual transfer from a ketchup sequence",
+    key: "banana_handover",
+    source: {
+      kind: "video",
+      label: "Source motion · ARCTIC · ketchup",
+      path: "assets/sources/arctic_ketchup_handover.mp4",
+    },
+  },
+  {
+    title: "Mug grasp change",
+    type: "Grasp transition",
+    key: "mug_grasp_change",
+    source: {
+      kind: "image-pair",
+      label: "Source templates · OakInk",
+      images: [
+        ["Top grasp", "assets/templates/tasks/mug_top_source.png"],
+        ["Side grasp", "assets/templates/tasks/mug_side_source.png"],
+      ],
+    },
+  },
 ];
 
 function video(src, label, className = "") {
@@ -111,11 +153,24 @@ function renderTransferCards() {
 function renderControlCards() {
   document.querySelector("#control-grid").innerHTML = controlTasks.map((task) => `
     <article class="control-card">
-      <div class="control-card-copy"><span class="tag">Control axis</span><h3>${task.title}</h3><p>${task.note}</p><img src="${task.template}" alt="Interaction template for ${task.title}"></div>
+      <div class="control-card-copy"><span class="tag">Control axis</span><h3>${task.title}</h3><p>${task.note}</p>${task.templates ? `<div class="control-template-pair">${task.templates.map(([label, src]) => `<figure><img src="${src}" alt="${label} source template for ${task.title}"><figcaption>${label}</figcaption></figure>`).join("")}</div>` : `<img src="${task.template}" alt="Interaction template for ${task.title}">`}</div>
       <div class="reference-panel"><span class="media-label">Constructed references</span><div class="reference-grid" data-count="${task.references.length}">${task.references.map(([label, src]) => video(src, label)).join("")}</div></div>
       <div class="outcomes-panel"><span class="media-label">Grounded policy</span><div class="outcomes" data-count="${task.clips.length}">${task.clips.map(([label, src]) => `<div class="outcome">${video(src, label)}</div>`).join("")}</div></div>
     </article>
   `).join("");
+}
+
+function renderTaskSource(source, title) {
+  if (source.kind === "video") {
+    return `<div class="media-panel"><span>${source.label}</span><video muted loop playsinline controls preload="metadata" data-autoplay src="${source.path}"></video></div>`;
+  }
+  if (source.kind === "image-pair") {
+    return `<div class="media-panel"><span>${source.label}</span><div class="task-template-pair">${source.images.map(([label, path]) => `<figure><img src="${path}" alt="${label} source template for ${title}"><figcaption>${label}</figcaption></figure>`).join("")}</div></div>`;
+  }
+  if (source.kind === "image") {
+    return `<div class="media-panel"><span>${source.label}</span><img src="${source.path}" alt="Source template for ${title}"></div>`;
+  }
+  throw new Error(`Unsupported task source kind: ${source.kind}`);
 }
 
 function renderTaskSpanCards() {
@@ -123,7 +178,7 @@ function renderTaskSpanCards() {
     <article class="task-card">
       <div class="task-card-head"><div><h3>${task.title}</h3><p>${task.type}</p></div><span class="tag">Full method</span></div>
       <div class="media-triptych">
-        <div class="media-panel"><span>Source templates</span><img src="assets/templates/tasks/${task.template}" alt="Source templates for ${task.title}"></div>
+        ${renderTaskSource(task.source, task.title)}
         <div class="media-panel"><span>Constructed reference</span><video muted loop playsinline controls preload="metadata" data-autoplay src="assets/references/${task.key}.mp4"></video></div>
         <div class="media-panel">${video(`assets/rollouts/tasks/${task.key}.mp4`, "Grounded policy")}</div>
       </div>
