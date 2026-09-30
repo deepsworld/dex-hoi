@@ -127,7 +127,7 @@ function video(src, label, className = "") {
 function renderScaleCards() {
   document.querySelector("#scale-grid").innerHTML = scaleTasks.map((task) => `
     <article class="task-card">
-      <div class="task-card-head"><h3>${task.title}</h3><span class="tag">Scale</span></div>
+      <div class="task-card-head"><h3>${task.title}</h3></div>
       <div class="media-triptych">
         <div class="media-panel"><span>Source template</span><img src="${task.source}" alt="Source interaction for ${task.title}"></div>
         <div class="media-panel"><span>Retargeted anchor</span><img src="${task.anchor}" alt="Retargeted robot interaction for ${task.title}"></div>
@@ -176,7 +176,7 @@ function renderTaskSource(source, title) {
 function renderTaskSpanCards() {
   document.querySelector("#task-span-grid").innerHTML = taskSpan.map((task) => `
     <article class="task-card">
-      <div class="task-card-head"><div><h3>${task.title}</h3><p>${task.type}</p></div><span class="tag">Full method</span></div>
+      <div class="task-card-head"><div><h3>${task.title}</h3><p>${task.type}</p></div></div>
       <div class="media-triptych">
         ${renderTaskSource(task.source, task.title)}
         <div class="media-panel"><span>Constructed reference</span><video muted loop playsinline controls preload="metadata" data-autoplay src="assets/references/${task.key}.mp4"></video></div>
