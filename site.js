@@ -120,6 +120,51 @@ const taskSpan = [
   },
 ];
 
+const denseTrackingTasks = [
+  {
+    title: "Ketchup · 100 frames",
+    type: "Exact object",
+    reference: "assets/dense-tracking/ketchup-100_reference.mp4",
+    rollout: "assets/dense-tracking/ketchup-100_rollout.mp4",
+  },
+  {
+    title: "Box · 200 frames",
+    type: "Exact object",
+    reference: "assets/dense-tracking/box-200_reference.mp4",
+    rollout: "assets/dense-tracking/box-200_rollout.mp4",
+  },
+  {
+    title: "Mixer · 170 frames",
+    type: "Exact object",
+    reference: "assets/dense-tracking/mixer-170_reference.mp4",
+    rollout: "assets/dense-tracking/mixer-170_rollout.mp4",
+  },
+  {
+    title: "Ketchup · 300 frames",
+    type: "Exact object",
+    reference: "assets/dense-tracking/ketchup-300_reference.mp4",
+    rollout: "assets/dense-tracking/ketchup-300_rollout.mp4",
+  },
+  {
+    title: "Mixer · 300 frames",
+    type: "Exact object",
+    reference: "assets/dense-tracking/mixer-300_reference.mp4",
+    rollout: "assets/dense-tracking/mixer-300_rollout.mp4",
+  },
+  {
+    title: "Notebook → procedural notebook",
+    type: "Dimensional variation",
+    reference: "assets/dense-tracking/notebook-300_reference.mp4",
+    rollout: "assets/dense-tracking/notebook-300_rollout.mp4",
+  },
+  {
+    title: "Waffle iron → notebook",
+    type: "Category variation",
+    reference: "assets/dense-tracking/waffleiron-300_reference.mp4",
+    rollout: "assets/dense-tracking/waffleiron-300_rollout.mp4",
+  },
+];
+
 function video(src, label, className = "") {
   return `<div class="clip ${className}"><span>${label}</span><video muted loop playsinline controls preload="metadata" data-autoplay src="${src}"></video></div>`;
 }
@@ -200,6 +245,18 @@ function renderExamples() {
   `).join("");
 }
 
+function renderDenseTracking() {
+  document.querySelector("#dense-tracking-grid").innerHTML = denseTrackingTasks.map((task) => `
+    <article class="dense-tracking-card">
+      <div class="task-card-head"><h3>${task.title}</h3><span class="tag">${task.type}</span></div>
+      <div class="dense-tracking-pair">
+        ${video(task.reference, "Dense human reference")}
+        ${video(task.rollout, "Grounded policy")}
+      </div>
+    </article>
+  `).join("");
+}
+
 function activateVisibleVideos() {
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
@@ -216,4 +273,5 @@ renderTransferCards();
 renderControlCards();
 renderTaskSpanCards();
 renderExamples();
+renderDenseTracking();
 activateVisibleVideos();

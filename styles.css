@@ -150,6 +150,13 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
 .example-card h3 { margin: 15px 17px 4px; font-size: 17px; }
 .example-card p { margin: 0 17px 17px; color: var(--muted); font-size: 13px; }
 
+.dense-tracking-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.dense-tracking-card { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: white; overflow: hidden; }
+.dense-tracking-card h3 { margin: 0; font-size: 18px; line-height: 1.25; }
+.dense-tracking-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.dense-tracking-pair .clip:first-child { border-right: 1px solid var(--line); }
+.dense-tracking-pair video { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #f7f8fa; }
+
 .real-section { padding: 110px 0; color: var(--ink); border-top: 1px solid var(--line); background: var(--paper-deep); }
 .real-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; align-items: center; }
 .real-copy .section-kicker { color: var(--cobalt); }
@@ -165,6 +172,7 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
   .control-card .reference-panel,
   .control-card .outcomes-panel { min-height: 280px; border-left: 0; border-top: 1px solid var(--line); }
   .example-grid { grid-template-columns: repeat(2, 1fr); }
+  .dense-tracking-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
   .section-shell, .hero { width: min(100% - 28px, var(--max)); }
@@ -188,5 +196,7 @@ h2 { margin: 0; font-family: "Oswald", "Arial Narrow", sans-serif; font-size: cl
   .control-card { grid-template-columns: 1fr; }
   .control-card .outcomes-panel { min-height: 260px; border-left: 0; border-top: 1px solid var(--line); }
   .example-grid { grid-template-columns: 1fr; }
+  .dense-tracking-pair { grid-template-columns: 1fr; }
+  .dense-tracking-pair .clip:first-child { border-right: 0; border-bottom: 1px solid var(--line); }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
