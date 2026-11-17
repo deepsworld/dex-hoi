@@ -162,3 +162,11 @@ Full reference-motion renders are not currently available for every revised scal
 4. Run the media builder from the repository root.
 5. Run `scripts/check_site.py` to catch missing files, old framework naming, identifying language, and timestep-0 policy assets.
 6. Preview through a local HTTP server; do not rely on `file://` for the embedded deck.
+
+
+## Miscellaneous
+
+The main-page section selector includes **Miscellaneous**, linking to
+`miscellaneous/index.html`. This standalone gallery contains the 15-task authoring
+study with review feedback, the 40-task object-grouped gallery with interaction
+sources, and the four-task relational-retargeting video grid.
