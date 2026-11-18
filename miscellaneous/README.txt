@@ -6,7 +6,7 @@ Keep assets/ and media/ alongside the four HTML files. No server-side code, exte
 Standalone links:
   authoring.html    15-task reference/policy pairs
   tasks.html        40 successful task rollouts
-  retargeting.html  Five methods by four tasks
+  retargeting.html  Five methods by three tasks
 
 Link from an existing site:
   <a href="supplement/index.html">Additional video evidence</a>
