@@ -168,5 +168,5 @@ Full reference-motion renders are not currently available for every revised scal
 
 The main-page section selector includes **Miscellaneous**, linking to
 `miscellaneous/index.html`. This standalone gallery contains the 15-task authoring
-study with review feedback, the 40-task object-grouped gallery with interaction
-sources, and the three-task relational-retargeting video grid.
+study with review feedback and the 40-task gallery: representative learned policies
+followed by every reference/policy pair, grouped by object with interaction sources.
