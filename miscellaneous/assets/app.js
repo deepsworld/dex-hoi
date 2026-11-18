@@ -2,14 +2,48 @@
 
 const videos = [...document.querySelectorAll("video")];
 const pause = items => items.forEach(video => video.pause());
-document.querySelector("#pause-all")?.addEventListener("click", () => pause(videos));
-document.addEventListener("visibilitychange", () => { if (document.hidden) pause(videos); });
+const pauseButton = document.querySelector("#pause-all");
+const visibleVideos = new Set();
+let autoplayPaused = false;
+
+// Automatically loop videos in view, while keeping offscreen and background videos paused.
+function syncPlayback(video) {
+  if (autoplayPaused || document.hidden || !visibleVideos.has(video)) {
+    video.pause();
+    return;
+  }
+  video.play().catch(error => {
+    if (error.name !== "AbortError" && error.name !== "NotAllowedError") throw error;
+  });
+}
+function updatePauseButton() {
+  if (pauseButton) pauseButton.textContent = autoplayPaused ? "Resume all" : "Pause all";
+}
+const visibilityObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio >= .05) visibleVideos.add(entry.target);
+    else visibleVideos.delete(entry.target);
+    syncPlayback(entry.target);
+  });
+}, { threshold: .05 });
+videos.forEach(video => {
+  video.pause();
+  visibilityObserver.observe(video);
+});
+pauseButton?.addEventListener("click", () => {
+  autoplayPaused = !autoplayPaused;
+  updatePauseButton();
+  videos.forEach(syncPlayback);
+});
+document.addEventListener("visibilitychange", () => videos.forEach(syncPlayback));
 
 // Compare pairs or complete method rows from the beginning, without altering playback speed.
 document.querySelectorAll("[data-play-group]").forEach(button => {
   button.addEventListener("click", async () => {
     const group = document.getElementById(button.dataset.playGroup);
     const players = [...group.querySelectorAll("video:not([data-review-preview])")];
+    autoplayPaused = false;
+    updatePauseButton();
     pause(videos);
     players.forEach(video => { video.currentTime = 0; video.playbackRate = 1; });
     button.disabled = true;
