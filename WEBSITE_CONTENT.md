@@ -164,9 +164,8 @@ Full reference-motion renders are not currently available for every revised scal
 6. Preview through a local HTTP server; do not rely on `file://` for the embedded deck.
 
 
-## Miscellaneous
+## Additional Tasks (Rebuttal)
 
-The main-page section selector includes **Miscellaneous**, linking to
-`miscellaneous/index.html`. This standalone gallery contains the 15-task authoring
-study with review feedback and the 40-task gallery: representative learned policies
-followed by every reference/policy pair, grouped by object with interaction sources.
+A red button directly beneath the DexLink title links to `additional-tasks.html`.
+The authoring and forty-task galleries, videos and posters are top-level sibling
+files. Gallery styling and playback code are embedded for anonymous forwarding.
